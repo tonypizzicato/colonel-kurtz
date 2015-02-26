@@ -58,13 +58,7 @@ class ColonelKurtz {
   }
 
   toHtml(): string {
-    var json = this.toJSON(),
-        html = '';
-    json.forEach(function(block) {
-        html += block.content.html;
-    });
-
-    return html;
+    return React.renderToStaticMarkup(this._rootComponent())
   }
 
   // Private
