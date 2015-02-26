@@ -6,10 +6,7 @@ module.exports = {
   devtool: 'source-map',
 
   entry: {
-    'colonel-kurtz'  : './src/index.js',
-    'addons/medium'  : './addons/medium/index.js',
-    'addons/image'   : './addons/image/index.js',
-    'addons/youtube' : './addons/youtube/index.js'
+    'colonel-kurtz'  : './src/index.js'
   },
 
   output: {
@@ -32,14 +29,14 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("colonel-kurtz.css")
+    new ExtractTextPlugin("[name].css")
   ],
 
   module: {
     loaders: [
       {
         test    : /\.s*(c|a)ss$/,
-        loader  : ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
+        loader  : ExtractTextPlugin.extract('style', 'css!autoprefixer!sass', {publicPath: './build'})
       },
       {
         test    : /\.jsx*$/,
@@ -48,7 +45,7 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : '6to5?experimental',
+        loader  : '6to5?experimental'
       },
       {
         test    : /\.json$/,

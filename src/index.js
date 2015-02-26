@@ -58,7 +58,13 @@ class ColonelKurtz {
   }
 
   toHtml(): string {
-    return React.renderToStaticMarkup(this._rootComponent())
+    var json = this.toJSON(),
+        html = '';
+    json.forEach(function(block) {
+        html += block.content.html;
+    });
+
+    return html;
   }
 
   // Private
@@ -81,6 +87,7 @@ class ColonelKurtz {
 
 }
 
+ColonelKurtz.addons       = require('./addons')
 ColonelKurtz.createBlock  = require('./utils/createBlock')
 ColonelKurtz.addBlockType = require('./utils/addBlockType')
 
